@@ -56,6 +56,8 @@ fun cuerpo(modifier: Modifier, authViewModel: AuthViewModel){
         txtusuario(usuario) { authViewModel.onLoginTextChanged(it, password) }
         Spacer(modifier = Modifier.size(15.dp))
         txtpassword(password) { authViewModel.onLoginTextChanged(usuario, it) }
+        Spacer(modifier = Modifier.size(15.dp))
+        authButton(authViewModel)
     }
 }
 

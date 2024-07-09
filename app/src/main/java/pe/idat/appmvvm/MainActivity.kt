@@ -11,8 +11,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import pe.idat.appmvvm.auth.AuthViewModel
 import pe.idat.appmvvm.auth.authScreen
+import pe.idat.appmvvm.model.Routes
 import pe.idat.appmvvm.ui.theme.AppmvvmTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,7 +25,14 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AppmvvmTheme {
-                authScreen(AuthViewModel())
+                val navigation = rememberNavController()
+                NavHost(navController = navigation,
+                    startDestination = Routes.loginScreen.path,
+                    builder = {
+                        composable(Routes.loginScreen.path){
+                            authScreen(AuthViewModel())
+                        }
+                    })
             }
         }
     }
